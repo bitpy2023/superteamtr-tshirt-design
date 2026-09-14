@@ -212,11 +212,12 @@ Regenerate after any edit with `python3 tools/build_docs.py`.
 
 ## Documentation
 
-*15 files · 659.0 KB*
+*16 files · 661.7 KB*
 
 | file | size | sha256 |
 |---|---|---|
 | `.gitignore` | 35 B | `bf36c44e60d01d75` |
+| `PUSH-TO-GITHUB.md` | 1.7 KB | `–` |
 | `README.md` | 4.9 KB | `–` |
 | `index.html` | 584.9 KB | `7a7d5f90db7e51c3` |
 | `docs/01-creative-strategy.md` | 5.4 KB | `–` |
@@ -227,9 +228,9 @@ Regenerate after any edit with `python3 tools/build_docs.py`.
 | `docs/06-print-production-spec.md` | 9.4 KB | `–` |
 | `docs/07-design-rationale.md` | 6.3 KB | `–` |
 | `docs/08-quality-control.md` | 5.0 KB | `–` |
-| `docs/09-deliverables-manifest.md` | 12.5 KB | `–` |
+| `docs/09-deliverables-manifest.md` | 13.3 KB | `–` |
 | `docs/10-assets-and-licensing.md` | 4.3 KB | `–` |
-| `docs/project-state.json` | 7.1 KB | `60c3e75ff8db5613` |
+| `docs/project-state.json` | 7.2 KB | `db74e85867484bf3` |
 | `production/colour-palette.json` | 2.9 KB | `–` |
 
 _Fonts are shipped under the SIL Open Font License; see `docs/10-assets-and-licensing.md`._
