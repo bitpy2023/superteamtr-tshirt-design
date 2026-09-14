@@ -1,0 +1,19 @@
+{
+  "_note": "Official brand assets embedded in this artwork file. The supplied SVGs are transformed rigidly (uniform scale + translation) and never redrawn, distorted or recoloured (monochrome mode excepted, as an approved print fallback).",
+  "artwork": "final-front-chest_on-light_PRINTBUILD.svg",
+  "print_size_mm": [
+    90.0,
+    104.0
+  ],
+  "placements": [
+    {
+      "asset": "solanaLogoMark.svg",
+      "sha256": "3d3401109aa061dec40a8659f1847817a8e647f98de1e65e76e86a95bbe1f08a",
+      "x": 40.58,
+      "y": 42.14,
+      "width": 8.85,
+      "height": 7.71,
+      "mode": "full colour (original asset)"
+    }
+  ]
+}

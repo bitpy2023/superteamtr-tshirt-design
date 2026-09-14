@@ -1,0 +1,19 @@
+{
+  "_note": "Official brand assets embedded in this artwork file. The supplied SVGs are transformed rigidly (uniform scale + translation) and never redrawn, distorted or recoloured (monochrome mode excepted, as an approved print fallback).",
+  "artwork": "final-neck-label_on-light_1COLOR.svg",
+  "print_size_mm": [
+    64.0,
+    26.0
+  ],
+  "placements": [
+    {
+      "asset": "solanaLogo.svg",
+      "sha256": "ccdc416707911112da5933a6ed9f60ce1f819333e70447a5701bc012d6865f51",
+      "x": 30.0,
+      "y": 7.5,
+      "width": 26.0,
+      "height": 3.86,
+      "mode": "full colour (original asset)"
+    }
+  ]
+}

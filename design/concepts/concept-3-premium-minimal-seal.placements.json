@@ -1,0 +1,28 @@
+{
+  "_note": "Official brand assets embedded in this artwork file. The supplied SVGs are transformed rigidly (uniform scale + translation) and never redrawn, distorted or recoloured (monochrome mode excepted, as an approved print fallback).",
+  "artwork": "concept-3-premium-minimal-seal.svg",
+  "print_size_mm": [
+    300.0,
+    300.0
+  ],
+  "placements": [
+    {
+      "asset": "superteamtr-monogram.svg",
+      "sha256": "aeb70c9069c3a96ed77fc22381c37339ac40878dfc2161cfa9f83f08e99d3805",
+      "x": 100.0,
+      "y": 92.0,
+      "width": 76.0,
+      "height": 66.81,
+      "mode": "monochrome"
+    },
+    {
+      "asset": "solanaLogo.svg",
+      "sha256": "ccdc416707911112da5933a6ed9f60ce1f819333e70447a5701bc012d6865f51",
+      "x": 109.0,
+      "y": 200.0,
+      "width": 58.0,
+      "height": 8.62,
+      "mode": "full colour (original asset)"
+    }
+  ]
+}

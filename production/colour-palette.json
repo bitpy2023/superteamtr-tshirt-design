@@ -1,0 +1,155 @@
+{
+  "_note": "SuperteamTR T-shirt colour system - HEX/RGB/CMYK + nearest Pantone",
+  "inks": {
+    "WHITE": {
+      "hex": "#FFFFFF",
+      "cmyk": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "pantone": "White (opaque plastisol / DTG white underbase)",
+      "role": "Primary light ink on dark garments; also the underbase for every colour separation when printing on black.",
+      "rgb": [
+        255,
+        255,
+        255
+      ]
+    },
+    "TR_RED": {
+      "hex": "#D6223B",
+      "cmyk": [
+        0.06,
+        0.95,
+        0.72,
+        0.0
+      ],
+      "pantone": "199 C (nearest)",
+      "role": "Turkish / SuperteamTR accent - gates, bridge terminus nodes, index marks. Used sparingly (<= 8% of ink area).",
+      "rgb": [
+        214,
+        34,
+        59
+      ]
+    },
+    "SOLANA_PURPLE": {
+      "hex": "#9945FF",
+      "cmyk": [
+        0.68,
+        0.79,
+        0.0,
+        0.0
+      ],
+      "pantone": "2665 C (nearest)",
+      "role": "Solana logomark gradient start + player-portal halo.",
+      "rgb": [
+        153,
+        69,
+        255
+      ]
+    },
+    "SOLANA_GREEN": {
+      "hex": "#14F195",
+      "cmyk": [
+        0.55,
+        0.0,
+        0.6,
+        0.0
+      ],
+      "pantone": "3385 C / 802 C neon (nearest)",
+      "role": "Solana logomark gradient end + frame index marks.",
+      "rgb": [
+        20,
+        241,
+        149
+      ]
+    },
+    "SOLANA_TEAL": {
+      "hex": "#28E0B9",
+      "cmyk": [
+        0.52,
+        0.0,
+        0.38,
+        0.0
+      ],
+      "pantone": "338 C (nearest)",
+      "role": "Mid step of the purple -> green gradient; second colour of the 2-ink print fallback.",
+      "rgb": [
+        40,
+        224,
+        185
+      ]
+    },
+    "BLUEPRINT_BLACK": {
+      "hex": "#0B0B10",
+      "cmyk": [
+        0.6,
+        0.55,
+        0.55,
+        1.0
+      ],
+      "pantone": "Black 6 C (nearest)",
+      "role": "Concept 2 line work on bone garments.",
+      "rgb": [
+        11,
+        11,
+        16
+      ]
+    },
+    "GARMENT_WASHED_BLACK": {
+      "hex": "#17171A",
+      "cmyk": [
+        0.65,
+        0.6,
+        0.55,
+        0.95
+      ],
+      "pantone": "-",
+      "role": "Recommended garment: washed / vintage black tee.",
+      "rgb": [
+        23,
+        23,
+        26
+      ]
+    },
+    "GARMENT_OFF_WHITE": {
+      "hex": "#E9E4D8",
+      "cmyk": [
+        0.06,
+        0.06,
+        0.14,
+        0.0
+      ],
+      "pantone": "Bone / 9224 C (nearest)",
+      "role": "Alternate garment: bone / natural cotton tee.",
+      "rgb": [
+        233,
+        228,
+        216
+      ]
+    },
+    "GARMENT_CHARCOAL": {
+      "hex": "#2B2B2F",
+      "cmyk": [
+        0.6,
+        0.52,
+        0.48,
+        0.72
+      ],
+      "pantone": "447 C (nearest)",
+      "role": "Alternate garment: charcoal.",
+      "rgb": [
+        43,
+        43,
+        47
+      ]
+    }
+  },
+  "hero_separations": [
+    "WHITE",
+    "TR_RED",
+    "SOLANA_PURPLE",
+    "SOLANA_GREEN"
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "_note": "Official brand assets embedded in this artwork file. The supplied SVGs are transformed rigidly (uniform scale + translation) and never redrawn, distorted or recoloured (monochrome mode excepted, as an approved print fallback).",
+  "artwork": "concept-2-blueprint-network.svg",
+  "print_size_mm": [
+    300.0,
+    380.0
+  ],
+  "placements": [
+    {
+      "asset": "superteamtr-monogram.svg",
+      "sha256": "aeb70c9069c3a96ed77fc22381c37339ac40878dfc2161cfa9f83f08e99d3805",
+      "x": 29.0,
+      "y": 272.0,
+      "width": 50.0,
+      "height": 43.96,
+      "mode": "monochrome"
+    },
+    {
+      "asset": "solanaLogo.svg",
+      "sha256": "ccdc416707911112da5933a6ed9f60ce1f819333e70447a5701bc012d6865f51",
+      "x": 104.0,
+      "y": 326.0,
+      "width": 56.0,
+      "height": 8.32,
+      "mode": "monochrome"
+    }
+  ]
+}

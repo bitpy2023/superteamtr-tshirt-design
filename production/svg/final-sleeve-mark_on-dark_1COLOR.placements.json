@@ -1,0 +1,19 @@
+{
+  "_note": "Official brand assets embedded in this artwork file. The supplied SVGs are transformed rigidly (uniform scale + translation) and never redrawn, distorted or recoloured (monochrome mode excepted, as an approved print fallback).",
+  "artwork": "final-sleeve-mark_on-dark_1COLOR.svg",
+  "print_size_mm": [
+    44.0,
+    44.0
+  ],
+  "placements": [
+    {
+      "asset": "solanaLogoMark.svg",
+      "sha256": "3d3401109aa061dec40a8659f1847817a8e647f98de1e65e76e86a95bbe1f08a",
+      "x": 19.3,
+      "y": 15.2,
+      "width": 5.4,
+      "height": 4.7,
+      "mode": "full colour (original asset)"
+    }
+  ]
+}

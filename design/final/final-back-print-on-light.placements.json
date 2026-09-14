@@ -1,0 +1,37 @@
+{
+  "_note": "Official brand assets embedded in this artwork file. The supplied SVGs are transformed rigidly (uniform scale + translation) and never redrawn, distorted or recoloured (monochrome mode excepted, as an approved print fallback).",
+  "artwork": "final-back-print-on-light.svg",
+  "print_size_mm": [
+    320.0,
+    400.0
+  ],
+  "placements": [
+    {
+      "asset": "solanaLogoMark.svg",
+      "sha256": "3d3401109aa061dec40a8659f1847817a8e647f98de1e65e76e86a95bbe1f08a",
+      "x": 143.2,
+      "y": 137.36,
+      "width": 33.6,
+      "height": 29.28,
+      "mode": "full colour (original asset)"
+    },
+    {
+      "asset": "superteamtr-lockup-horizontal.svg",
+      "sha256": "41d38beb1fba2827f4a59c77d0f5ff52cc33fb293044db2b704d78d7c39cf097",
+      "x": 59.0,
+      "y": 280.0,
+      "width": 202.0,
+      "height": 52.85,
+      "mode": "monochrome"
+    },
+    {
+      "asset": "solanaLogo.svg",
+      "sha256": "ccdc416707911112da5933a6ed9f60ce1f819333e70447a5701bc012d6865f51",
+      "x": 119.0,
+      "y": 370.0,
+      "width": 82.0,
+      "height": 12.19,
+      "mode": "full colour (original asset)"
+    }
+  ]
+}

@@ -1,0 +1,206 @@
+{
+  "project": "SuperteamTR T-Shirt \u2014 Colosseum / Crypto World Expo inspired",
+  "generated": "see git history (regenerate with tools/*.py)",
+  "file_count": 138,
+  "total_bytes": 57235574,
+  "inks": {
+    "WHITE": {
+      "hex": "#FFFFFF",
+      "cmyk": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "pantone": "White (opaque plastisol / DTG white underbase)"
+    },
+    "TR_RED": {
+      "hex": "#D6223B",
+      "cmyk": [
+        0.06,
+        0.95,
+        0.72,
+        0.0
+      ],
+      "pantone": "199 C (nearest)"
+    },
+    "SOLANA_PURPLE": {
+      "hex": "#9945FF",
+      "cmyk": [
+        0.68,
+        0.79,
+        0.0,
+        0.0
+      ],
+      "pantone": "2665 C (nearest)"
+    },
+    "SOLANA_GREEN": {
+      "hex": "#14F195",
+      "cmyk": [
+        0.55,
+        0.0,
+        0.6,
+        0.0
+      ],
+      "pantone": "3385 C / 802 C neon (nearest)"
+    },
+    "SOLANA_TEAL": {
+      "hex": "#28E0B9",
+      "cmyk": [
+        0.52,
+        0.0,
+        0.38,
+        0.0
+      ],
+      "pantone": "338 C (nearest)"
+    },
+    "BLUEPRINT_BLACK": {
+      "hex": "#0B0B10",
+      "cmyk": [
+        0.6,
+        0.55,
+        0.55,
+        1.0
+      ],
+      "pantone": "Black 6 C (nearest)"
+    },
+    "GARMENT_WASHED_BLACK": {
+      "hex": "#17171A",
+      "cmyk": [
+        0.65,
+        0.6,
+        0.55,
+        0.95
+      ],
+      "pantone": "-"
+    },
+    "GARMENT_OFF_WHITE": {
+      "hex": "#E9E4D8",
+      "cmyk": [
+        0.06,
+        0.06,
+        0.14,
+        0.0
+      ],
+      "pantone": "Bone / 9224 C (nearest)"
+    },
+    "GARMENT_CHARCOAL": {
+      "hex": "#2B2B2F",
+      "cmyk": [
+        0.6,
+        0.52,
+        0.48,
+        0.72
+      ],
+      "pantone": "447 C (nearest)"
+    }
+  },
+  "print_spec": {
+    "back_print_mm": [
+      320,
+      400
+    ],
+    "front_chest_mm": [
+      90,
+      104
+    ],
+    "back_print_top_offset_mm": 95,
+    "front_chest_top_offset_mm": 95,
+    "front_chest_side_offset_mm": 95,
+    "neck_label_mm": [
+      64,
+      26
+    ],
+    "sleeve_mark_mm": 40,
+    "garment": "adult unisex L, washed black 220\u2013260 gsm (alt: bone)"
+  },
+  "deliverables": {
+    "design_svg": [
+      "design/concepts/concept-1-futuristic-arena.placements.json",
+      "design/concepts/concept-1-futuristic-arena.svg",
+      "design/concepts/concept-2-blueprint-network.placements.json",
+      "design/concepts/concept-2-blueprint-network.svg",
+      "design/concepts/concept-3-premium-minimal-seal.placements.json",
+      "design/concepts/concept-3-premium-minimal-seal.svg",
+      "design/final/final-back-print-on-dark.placements.json",
+      "design/final/final-back-print-on-dark.svg",
+      "design/final/final-back-print-on-light.placements.json",
+      "design/final/final-back-print-on-light.svg",
+      "design/final/final-front-chest-on-dark.placements.json",
+      "design/final/final-front-chest-on-dark.svg",
+      "design/final/final-front-chest-on-light.placements.json",
+      "design/final/final-front-chest-on-light.svg",
+      "design/final/final-neck-label-on-dark.placements.json",
+      "design/final/final-neck-label-on-dark.svg",
+      "design/final/final-sleeve-mark-on-dark.placements.json",
+      "design/final/final-sleeve-mark-on-dark.svg"
+    ],
+    "production_pdf": [
+      "production/pdf-cmyk/superteamtr_back-print_on-dark_1COLOR.pdf",
+      "production/pdf-cmyk/superteamtr_back-print_on-dark_2COLOR.pdf",
+      "production/pdf-cmyk/superteamtr_back-print_on-dark_FULLCOLOR_dtg.pdf",
+      "production/pdf-cmyk/superteamtr_back-print_on-dark_PRINTBUILD.pdf",
+      "production/pdf-cmyk/superteamtr_back-print_on-light_FULLCOLOR_dtg.pdf",
+      "production/pdf-cmyk/superteamtr_back-print_on-light_PRINTBUILD.pdf",
+      "production/pdf-cmyk/superteamtr_front-chest_on-dark_PRINTBUILD.pdf",
+      "production/pdf-cmyk/superteamtr_front-chest_on-light_PRINTBUILD.pdf"
+    ],
+    "production_eps": [
+      "production/eps-cmyk/superteamtr_back-print_on-dark_1COLOR.eps",
+      "production/eps-cmyk/superteamtr_back-print_on-dark_2COLOR.eps",
+      "production/eps-cmyk/superteamtr_back-print_on-dark_FULLCOLOR_dtg.eps",
+      "production/eps-cmyk/superteamtr_back-print_on-dark_PRINTBUILD.eps",
+      "production/eps-cmyk/superteamtr_back-print_on-light_FULLCOLOR_dtg.eps",
+      "production/eps-cmyk/superteamtr_back-print_on-light_PRINTBUILD.eps",
+      "production/eps-cmyk/superteamtr_front-chest_on-dark_PRINTBUILD.eps",
+      "production/eps-cmyk/superteamtr_front-chest_on-light_PRINTBUILD.eps"
+    ],
+    "separations": [
+      "production/separations/superteamtr_back-print_1COLOR_white.pdf",
+      "production/separations/superteamtr_back-print_2COLOR_2INK-FILM-1_base-white.pdf",
+      "production/separations/superteamtr_back-print_2COLOR_2INK-FILM-2_solana-green.pdf",
+      "production/separations/superteamtr_back-print_on-dark_FILM-1_UNDERBASE_white-union.eps",
+      "production/separations/superteamtr_back-print_on-dark_FILM-1_UNDERBASE_white-union.pdf",
+      "production/separations/superteamtr_back-print_on-dark_FILM-2_TR-RED.eps",
+      "production/separations/superteamtr_back-print_on-dark_FILM-2_TR-RED.pdf",
+      "production/separations/superteamtr_back-print_on-dark_FILM-3_SOLANA-PURPLE.eps",
+      "production/separations/superteamtr_back-print_on-dark_FILM-3_SOLANA-PURPLE.pdf",
+      "production/separations/superteamtr_back-print_on-dark_FILM-4_SOLANA-TEAL.eps",
+      "production/separations/superteamtr_back-print_on-dark_FILM-4_SOLANA-TEAL.pdf"
+    ],
+    "png_300dpi": [
+      "production/png-300dpi/superteamtr_back-print_on-dark_1COLOR_300dpi_transparent.png",
+      "production/png-300dpi/superteamtr_back-print_on-dark_2COLOR_300dpi_transparent.png",
+      "production/png-300dpi/superteamtr_back-print_on-dark_FULLCOLOR_dtg_300dpi_transparent.png",
+      "production/png-300dpi/superteamtr_back-print_on-dark_PRINTBUILD_300dpi_transparent.png",
+      "production/png-300dpi/superteamtr_back-print_on-light_FULLCOLOR_dtg_300dpi_transparent.png",
+      "production/png-300dpi/superteamtr_back-print_on-light_PRINTBUILD_300dpi_transparent.png",
+      "production/png-300dpi/superteamtr_front-chest_on-dark_PRINTBUILD_300dpi_transparent.png",
+      "production/png-300dpi/superteamtr_front-chest_on-light_PRINTBUILD_300dpi_transparent.png"
+    ],
+    "tiff_cmyk": [
+      "production/tiff-300dpi/superteamtr_back-print_on-dark_FULLCOLOR_dtg_300dpi_CMYK.tiff",
+      "production/tiff-300dpi/superteamtr_back-print_on-dark_PRINTBUILD_300dpi_CMYK.tiff",
+      "production/tiff-300dpi/superteamtr_back-print_on-light_PRINTBUILD_300dpi_CMYK.tiff",
+      "production/tiff-300dpi/superteamtr_front-chest_on-dark_PRINTBUILD_300dpi_CMYK.tiff"
+    ],
+    "psd": [
+      "production/psd/superteamtr_back-print_on-dark_layered.psd"
+    ],
+    "mockups": [
+      "mockups/artwork-only-light.png",
+      "mockups/artwork-only-neutral.png",
+      "mockups/concept-1-mockup-back.png",
+      "mockups/concept-2-mockup-back.png",
+      "mockups/concept-3-mockup-front.png",
+      "mockups/mockup-back-view.png",
+      "mockups/mockup-dark-garment.png",
+      "mockups/mockup-detail-closeup.png",
+      "mockups/mockup-flatlay-back.png",
+      "mockups/mockup-flatlay-dark.png",
+      "mockups/mockup-front-view.png",
+      "mockups/mockup-light-garment.png",
+      "mockups/mockup-print-placement.png"
+    ]
+  }
+}
