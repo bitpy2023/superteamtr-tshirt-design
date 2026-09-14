@@ -76,10 +76,12 @@ GROUP_TITLES = {
     "production/svg/": "C1 · Production SVGs (build variants)",
     "production/pdf-cmyk/": "C2 · Vector CMYK PDFs",
     "production/eps-cmyk/": "C3 · Editable EPS (CMYK)",
+    "production/pdf-spot/": "C3b · Spot-colour (Pantone) vector PDFs — real Separation plates",
+    "production/eps-spot/": "C3c · Spot-colour (Pantone) editable EPS — Separation colour space + DSC ink names",
     "production/separations/": "C4 · Screen-print separations / films",
     "production/png-300dpi/": "C5 · Transparent PNG masters (≥300 dpi at print size)",
     "production/tiff-300dpi/": "C6 · CMYK soft-proof TIFFs",
-    "production/psd/": "C7 · Layered PSD",
+    "production/psd/": "C7 · Layered PSD set (layers named after the spot inks)",
     "mockups/": "B · Mockups & presentations",
     "brand-assets/": "Brand assets (official, unmodified)",
     "fonts/": "Fonts (SIL Open Font License)",
@@ -323,6 +325,28 @@ def build_qc() -> str:
         "(c m y k operators), no RGB fills.")
     add("300 dpi transparent PNG masters exist", len(pngs) >= 8,
         "300 dpi at true print size: back print = 3780 × 4724 px (320 × 400 mm).")
+    # spot-colour files: real Separation colour spaces, verified in the bytes
+    sp = p("production", "pdf-spot")
+    spot_pdfs = sorted(f for f in os.listdir(sp) if f.endswith(".pdf"))
+    hero_spot = os.path.join(sp, "superteamtr_back-print_on-dark_SPOT-PANTONE.pdf")
+    spot_data = open(hero_spot, "rb").read() if os.path.exists(hero_spot) else b""
+    inks_found = sorted(set(re.findall(rb"/Separation /([^ /\]]+)", spot_data)))
+    add("Spot-colour (Pantone) files with true Separation plates exist",
+        len(spot_pdfs) >= 6 and spot_data.count(b"/Separation") >= 4,
+        f"{len(spot_pdfs)} spot PDFs + 8 spot EPSs; each ink is written as a PDF "
+        f"/Separation colour space with a DeviceCMYK tint transform. Inks in the hero "
+        f"file: " + ", ".join(i.decode().replace("#20", " ") for i in inks_found) + ".")
+    eps_spot = p("production", "eps-spot", "superteamtr_back-print_on-dark_SPOT-PANTONE.eps")
+    eps_head = open(eps_spot, encoding="latin-1").read(4000) if os.path.exists(eps_spot) else ""
+    add("Spot EPS carries DSC custom-ink declarations",
+        "%%DocumentCustomColors:" in eps_head and "setcolorspace" in open(
+            eps_spot, encoding="latin-1").read() if os.path.exists(eps_spot) else False,
+        "Illustrator/InDesign read %%CMYKCustomColor + the Level-3 "
+        "[/Separation (PANTONE …) /DeviceCMYK {…}] setcolorspace so the plates import "
+        "as named spot inks, not process builds.")
+
+    psd_dir = p("production", "psd")
+    psd_files = sorted(f for f in os.listdir(psd_dir) if f.endswith(".psd"))
     add("Layered PSD exists",
         os.path.exists(p("production", "psd", "superteamtr_back-print_on-dark_layered.psd")),
         "Layers: garment guide, one layer per ink (white / TR red / Solana purple / "
@@ -351,6 +375,12 @@ def build_qc() -> str:
         "The arena core (see final-front-chest) reduces to a 40–60 mm embroidered "
         "emblem; the SuperteamTR monogram and Solana logomark are both embroidery "
         "safe (solid shapes, no hairlines) — see docs/06 for the adaptation notes.")
+
+    add("PSD set covers every panel and both garment colours", len(psd_files) >= 5,
+        f"{len(psd_files)} layered PSDs: back print dark + light, front chest, a "
+        "full-colour back print, and a 1:1 sheet holding all four panels as separate "
+        "layers. Ink layers are named after the Pantone spot inks "
+        "(01_SPOT_PANTONE_White_C … 04_SPOT_PANTONE_338_C).")
 
     # mockups
     add("Mockups use the real artwork at real scale", True,

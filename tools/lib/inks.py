@@ -12,6 +12,7 @@ INK = {
         hex="#FFFFFF",
         cmyk=(0.0, 0.0, 0.0, 0.0),
         pantone="White (opaque plastisol / DTG white underbase)",
+        spot="PANTONE White C",
         role="Primary light ink on dark garments; also the underbase for every "
              "colour separation when printing on black.",
     ),
@@ -20,6 +21,7 @@ INK = {
         hex="#D6223B",
         cmyk=(0.06, 0.95, 0.72, 0.00),
         pantone="199 C (nearest)",
+        spot="PANTONE 199 C",
         role="Turkish / SuperteamTR accent - gates, bridge terminus nodes, "
              "index marks. Used sparingly (<= 8% of ink area).",
     ),
@@ -28,6 +30,7 @@ INK = {
         hex="#9945FF",
         cmyk=(0.68, 0.79, 0.00, 0.00),
         pantone="2665 C (nearest)",
+        spot="PANTONE 2665 C",
         role="Solana logomark gradient start + player-portal halo.",
     ),
     # Solana brand green
@@ -35,6 +38,7 @@ INK = {
         hex="#14F195",
         cmyk=(0.55, 0.00, 0.60, 0.00),
         pantone="3385 C / 802 C neon (nearest)",
+        spot="PANTONE 802 C",
         role="Solana logomark gradient end + frame index marks.",
     ),
     # mid tone of the Solana gradient (used for the 2-colour print fallback)
@@ -42,6 +46,7 @@ INK = {
         hex="#28E0B9",
         cmyk=(0.52, 0.00, 0.38, 0.00),
         pantone="338 C (nearest)",
+        spot="PANTONE 338 C",
         role="Mid step of the purple -> green gradient; second colour of the "
              "2-ink print fallback.",
     ),
@@ -50,6 +55,7 @@ INK = {
         hex="#0B0B10",
         cmyk=(0.60, 0.55, 0.55, 1.00),
         pantone="Black 6 C (nearest)",
+        spot="PANTONE Black 6 C",
         role="Concept 2 line work on bone garments.",
     ),
     # garment colours
@@ -98,6 +104,15 @@ def normalize_colour(color: str) -> str:
     if c.startswith("#"):
         return c
     return NAMED_COLOURS.get(c.lower(), c)
+
+
+def spot_name(hex_color: str) -> str:
+    """Spot (Pantone) ink name for a colour; falls back to a named custom ink."""
+    h = normalize_colour(hex_color).strip().lower()
+    for ink in INK.values():
+        if ink["hex"].lower() == h and ink.get("spot"):
+            return ink["spot"]
+    return f"Custom ink {h.upper()}"
 
 
 def cmyk_of(hex_color: str) -> tuple[float, float, float, float]:

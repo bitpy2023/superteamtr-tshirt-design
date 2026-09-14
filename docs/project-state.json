@@ -1,8 +1,8 @@
 {
   "project": "SuperteamTR T-Shirt \u2014 Colosseum / Crypto World Expo inspired",
   "generated": "see git history (regenerate with tools/*.py)",
-  "file_count": 139,
-  "total_bytes": 57238349,
+  "file_count": 159,
+  "total_bytes": 82057212,
   "inks": {
     "WHITE": {
       "hex": "#FFFFFF",
@@ -185,7 +185,11 @@
       "production/tiff-300dpi/superteamtr_front-chest_on-dark_PRINTBUILD_300dpi_CMYK.tiff"
     ],
     "psd": [
-      "production/psd/superteamtr_back-print_on-dark_layered.psd"
+      "production/psd/superteamtr_all-panels_1to1_layered.psd",
+      "production/psd/superteamtr_back-print_on-dark_FULLCOLOR_layered.psd",
+      "production/psd/superteamtr_back-print_on-dark_layered.psd",
+      "production/psd/superteamtr_back-print_on-light_layered.psd",
+      "production/psd/superteamtr_front-chest_on-dark_layered.psd"
     ],
     "mockups": [
       "mockups/artwork-only-light.png",

@@ -1,6 +1,6 @@
 # 08 · Final quality-control checklist
 
-**22/22 checks passed** — verified automatically by `tools/build_docs.py` against the shipped files.
+**25/25 checks passed** — verified automatically by `tools/build_docs.py` against the shipped files.
 
 | # | check | status | detail |
 |---|---|---|---|
@@ -17,15 +17,18 @@
 | 11 | Dark-garment and light-garment variations exist | ✅ pass | Each build is delivered for washed black and bone garments. |
 | 12 | CMYK vector version exists for every build | ✅ pass | 8 PDF + 8 EPS, all written with CMYK ink values (c m y k operators), no RGB fills. |
 | 13 | 300 dpi transparent PNG masters exist | ✅ pass | 300 dpi at true print size: back print = 3780 × 4724 px (320 × 400 mm). |
-| 14 | Layered PSD exists | ✅ pass | Layers: garment guide, one layer per ink (white / TR red / Solana purple / Solana teal), hidden master reference. Editable, not flattened. |
-| 15 | Artwork is out of the danger zone for thin lines | ✅ pass | Production-build line weights: minimum 0.35 mm (≈1.0 pt) hairlines and 0.42 mm ticks; micro-type cap-height 3.2 mm (≈9 pt) and never below 8 pt, well above the 0.15 mm screen-print minimum. |
-| 16 | Enough negative space / readable at distance | ✅ pass | The arena wall is a real arcade with open bays (not a filled disc): from >5 m the silhouette reads as an arena ring, the SuperteamTR lockup and the tagline are the two largest shapes. |
-| 17 | Works on black and on light garments | ✅ pass | Dedicated on-dark (white base ink) and on-light (black + brand ink) builds; the red accent is used at ≤ 8 % of ink area. |
-| 18 | Gradient has a printable fallback | ✅ pass | Full-colour gradient (12-band vector approximation or DTG/DTF) → 2-ink print build (flat purple / flat teal, hard-stop) → 1-ink monochrome. All three exist as separate files. |
-| 19 | Garment-safe print geometry | ✅ pass | Back print 320 × 400 mm leaves ≥ 25 mm to every seam; hole-to-seam minimum on a size-L tee is 38 mm. Sleeve mark optional, 40 mm circle. |
-| 20 | Embroidery adaptation available | ✅ pass | The arena core (see final-front-chest) reduces to a 40–60 mm embroidered emblem; the SuperteamTR monogram and Solana logomark are both embroidery safe (solid shapes, no hairlines) — see docs/06 for the adaptation notes. |
-| 21 | Mockups use the real artwork at real scale | ✅ pass | mockups/*.png composite the production SVG at 1:1 millimetre scale, so print size, placement and logo visibility are physically accurate. |
-| 22 | Artwork-only presentations exist | ✅ pass | Artwork on neutral grey (dark build) and warm grey (light build). |
+| 14 | Spot-colour (Pantone) files with true Separation plates exist | ✅ pass | 8 spot PDFs + 8 spot EPSs; each ink is written as a PDF /Separation colour space with a DeviceCMYK tint transform. Inks in the hero file: PANTONE 199 C, PANTONE 2665 C, PANTONE 338 C, PANTONE White C. |
+| 15 | Spot EPS carries DSC custom-ink declarations | ✅ pass | Illustrator/InDesign read %%CMYKCustomColor + the Level-3 [/Separation (PANTONE …) /DeviceCMYK {…}] setcolorspace so the plates import as named spot inks, not process builds. |
+| 16 | Layered PSD exists | ✅ pass | Layers: garment guide, one layer per ink (white / TR red / Solana purple / Solana teal), hidden master reference. Editable, not flattened. |
+| 17 | Artwork is out of the danger zone for thin lines | ✅ pass | Production-build line weights: minimum 0.35 mm (≈1.0 pt) hairlines and 0.42 mm ticks; micro-type cap-height 3.2 mm (≈9 pt) and never below 8 pt, well above the 0.15 mm screen-print minimum. |
+| 18 | Enough negative space / readable at distance | ✅ pass | The arena wall is a real arcade with open bays (not a filled disc): from >5 m the silhouette reads as an arena ring, the SuperteamTR lockup and the tagline are the two largest shapes. |
+| 19 | Works on black and on light garments | ✅ pass | Dedicated on-dark (white base ink) and on-light (black + brand ink) builds; the red accent is used at ≤ 8 % of ink area. |
+| 20 | Gradient has a printable fallback | ✅ pass | Full-colour gradient (12-band vector approximation or DTG/DTF) → 2-ink print build (flat purple / flat teal, hard-stop) → 1-ink monochrome. All three exist as separate files. |
+| 21 | Garment-safe print geometry | ✅ pass | Back print 320 × 400 mm leaves ≥ 25 mm to every seam; hole-to-seam minimum on a size-L tee is 38 mm. Sleeve mark optional, 40 mm circle. |
+| 22 | Embroidery adaptation available | ✅ pass | The arena core (see final-front-chest) reduces to a 40–60 mm embroidered emblem; the SuperteamTR monogram and Solana logomark are both embroidery safe (solid shapes, no hairlines) — see docs/06 for the adaptation notes. |
+| 23 | PSD set covers every panel and both garment colours | ✅ pass | 5 layered PSDs: back print dark + light, front chest, a full-colour back print, and a 1:1 sheet holding all four panels as separate layers. Ink layers are named after the Pantone spot inks (01_SPOT_PANTONE_White_C … 04_SPOT_PANTONE_338_C). |
+| 24 | Mockups use the real artwork at real scale | ✅ pass | mockups/*.png composite the production SVG at 1:1 millimetre scale, so print size, placement and logo visibility are physically accurate. |
+| 25 | Artwork-only presentations exist | ✅ pass | Artwork on neutral grey (dark build) and warm grey (light build). |
 
 ## Open items before production (human sign-off)
 

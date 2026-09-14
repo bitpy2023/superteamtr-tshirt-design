@@ -1,7 +1,7 @@
 %PDF-1.4
 %‚„œ”
 1 0 obj
-<< /Title (superteamtr_back-print_on-dark_1COLOR) /Producer (SuperteamTR design toolkit) /Creator (tools/lib/vector_export.py) >>
+<< /Title (superteamtr_back-print_on-dark_1COLOR) /Producer (SuperteamTR design toolkit) /Creator (tools/lib/vector_export.py) /Subject (process CMYK artwork) >>
 endobj
 2 0 obj
 << /Length 123642 >>
@@ -4415,12 +4415,12 @@ xref
 0 6
 0000000000 65535 f 
 0000000015 00000 n 
-0000000160 00000 n 
-0000123856 00000 n 
-0000123971 00000 n 
-0000124028 00000 n 
+0000000192 00000 n 
+0000123888 00000 n 
+0000124003 00000 n 
+0000124060 00000 n 
 trailer
 << /Size 6 /Root 5 0 R /Info 1 0 R >>
 startxref
-124077
+124109
 %%EOF

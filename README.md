@@ -21,11 +21,12 @@ Turkish identity.
 | `design/final/` | editable SVG masters — back print, front chest, neck label, sleeve mark (dark + light garments) |
 | `design/concepts/` | the three concept directions |
 | `production/svg/` | build variants: full colour, screen-print build, 2-colour, 1-colour |
+| `production/pdf-spot/`, `production/eps-spot/` | **spot-colour (Pantone) files** — every ink is a real `/Separation` plate named after its Pantone reference |
 | `production/pdf-cmyk/`, `production/eps-cmyk/` | vector CMYK files for print (PDF review pages / clean EPS artwork) |
 | `production/separations/` | screen-print films: 4-ink set + underbase union plate, 2-ink and 1-ink |
 | `production/png-300dpi/` | transparent PNG masters, 300 dpi at true print size (back print 3780 × 4724 px) |
 | `production/tiff-300dpi/` | CMYK soft proofs (LZW) |
-| `production/psd/` | layered PSD: garment guide + one layer per ink + hidden master reference |
+| `production/psd/` | 5 layered PSDs — back print (dark + light), front chest, full-colour back, and an all-panels 1:1 sheet; ink layers named after the spot inks |
 | `mockups/` | back / front / flat lay / detail / placement sheet / artwork-only |
 | `brand-assets/official/` | the official logo files used, unmodified |
 | `fonts/` | the open-licence fonts (outlined in every deliverable) + licence texts |
@@ -40,7 +41,7 @@ Turkish identity.
 | **Front chest** | 90 × 104 mm, 95 mm below the shoulder seam, 95 mm from centre (wearer's right) |
 | **Neck label** | 64 × 26 mm inside the back neck · **sleeve mark** 40 mm circle (optional) |
 | **Garment** | washed black `#17171A`, 220–260 gsm combed cotton (alt: bone `#E9E4D8`) |
-| **Inks** | white base · TR red `#D6223B` · Solana purple `#9945FF` · Solana teal `#28E0B9` (gradient inside the Solana logomark only) |
+| **Inks (spot/Pantone)** | PANTONE White C (underbase) · **199 C** `#D6223B` · **2665 C** `#9945FF` · **338 C** `#28E0B9` · 802 C for the 2-colour build (gradient inside the Solana logomark only) |
 | **Type** | Anton + Space Grotesk + JetBrains Mono — all converted to outlines |
 
 Full detail: [`docs/06-print-production-spec.md`](docs/06-print-production-spec.md)

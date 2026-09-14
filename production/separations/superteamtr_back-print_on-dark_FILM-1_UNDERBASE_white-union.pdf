@@ -1,7 +1,7 @@
 %PDF-1.4
 %‚„œ”
 1 0 obj
-<< /Title (FILM-1_UNDERBASE_white-union) /Producer (SuperteamTR design toolkit) /Creator (tools/lib/vector_export.py) >>
+<< /Title (FILM-1_UNDERBASE_white-union) /Producer (SuperteamTR design toolkit) /Creator (tools/lib/vector_export.py) /Subject (process CMYK artwork) >>
 endobj
 2 0 obj
 << /Length 128467 >>
@@ -4541,12 +4541,12 @@ xref
 0 6
 0000000000 65535 f 
 0000000015 00000 n 
-0000000151 00000 n 
-0000128672 00000 n 
-0000128787 00000 n 
-0000128844 00000 n 
+0000000183 00000 n 
+0000128704 00000 n 
+0000128819 00000 n 
+0000128876 00000 n 
 trailer
 << /Size 6 /Root 5 0 R /Info 1 0 R >>
 startxref
-128893
+128925
 %%EOF

@@ -65,18 +65,18 @@ Regenerate after any edit with `python3 tools/build_docs.py`.
 
 ## C2 · Vector CMYK PDFs
 
-*8 files · 952.6 KB*
+*8 files · 952.8 KB*
 
 | file | size | sha256 |
 |---|---|---|
-| `production/pdf-cmyk/superteamtr_back-print_on-dark_1COLOR.pdf` | 121.4 KB | `346afe891e23f7f2` |
-| `production/pdf-cmyk/superteamtr_back-print_on-dark_2COLOR.pdf` | 121.4 KB | `727b86944a81161f` |
-| `production/pdf-cmyk/superteamtr_back-print_on-dark_FULLCOLOR_dtg.pdf` | 173.8 KB | `78b2e27830e3d253` |
-| `production/pdf-cmyk/superteamtr_back-print_on-dark_PRINTBUILD.pdf` | 126.1 KB | `817a987af25dd6e2` |
-| `production/pdf-cmyk/superteamtr_back-print_on-light_FULLCOLOR_dtg.pdf` | 173.8 KB | `48c6246ce5d9c1cc` |
-| `production/pdf-cmyk/superteamtr_back-print_on-light_PRINTBUILD.pdf` | 126.1 KB | `e470308235954c4e` |
-| `production/pdf-cmyk/superteamtr_front-chest_on-dark_PRINTBUILD.pdf` | 55.0 KB | `d5bced179d287403` |
-| `production/pdf-cmyk/superteamtr_front-chest_on-light_PRINTBUILD.pdf` | 55.0 KB | `2de60eab587b4106` |
+| `production/pdf-cmyk/superteamtr_back-print_on-dark_1COLOR.pdf` | 121.4 KB | `5633745d85bd9163` |
+| `production/pdf-cmyk/superteamtr_back-print_on-dark_2COLOR.pdf` | 121.4 KB | `86f69fcd6da66fc1` |
+| `production/pdf-cmyk/superteamtr_back-print_on-dark_FULLCOLOR_dtg.pdf` | 173.8 KB | `db00771c7d9ef9e5` |
+| `production/pdf-cmyk/superteamtr_back-print_on-dark_PRINTBUILD.pdf` | 126.2 KB | `16a4e0542a159657` |
+| `production/pdf-cmyk/superteamtr_back-print_on-light_FULLCOLOR_dtg.pdf` | 173.8 KB | `bf3dcaec89faa20c` |
+| `production/pdf-cmyk/superteamtr_back-print_on-light_PRINTBUILD.pdf` | 126.2 KB | `ee805b9c9c30f3cc` |
+| `production/pdf-cmyk/superteamtr_front-chest_on-dark_PRINTBUILD.pdf` | 55.1 KB | `1213f94db02e493d` |
+| `production/pdf-cmyk/superteamtr_front-chest_on-light_PRINTBUILD.pdf` | 55.1 KB | `3459f5cfc4bf50ca` |
 
 ## C3 · Editable EPS (CMYK)
 
@@ -93,23 +93,53 @@ Regenerate after any edit with `python3 tools/build_docs.py`.
 | `production/eps-cmyk/superteamtr_front-chest_on-dark_PRINTBUILD.eps` | 72.5 KB | `0a248feb2cfb4cbc` |
 | `production/eps-cmyk/superteamtr_front-chest_on-light_PRINTBUILD.eps` | 72.5 KB | `13fadd047c691e59` |
 
-## C4 · Screen-print separations / films
+## C3b · Spot-colour (Pantone) vector PDFs — real Separation plates
 
-*11 files · 573.2 KB*
+*8 files · 631.5 KB*
 
 | file | size | sha256 |
 |---|---|---|
-| `production/separations/superteamtr_back-print_1COLOR_white.pdf` | 121.3 KB | `4b3c66a7286dcea6` |
-| `production/separations/superteamtr_back-print_2COLOR_2INK-FILM-1_base-white.pdf` | 116.5 KB | `792337b12d9ebf46` |
-| `production/separations/superteamtr_back-print_2COLOR_2INK-FILM-2_solana-green.pdf` | 5.4 KB | `01ca03315cf5e7e4` |
+| `production/pdf-spot/superteamtr_back-print_on-dark_1COLOR_SPOT-PANTONE.pdf` | 117.9 KB | `977c432ed98be463` |
+| `production/pdf-spot/superteamtr_back-print_on-dark_2COLOR_SPOT-PANTONE.pdf` | 118.1 KB | `5d91851037be398c` |
+| `production/pdf-spot/superteamtr_back-print_on-dark_SPOT-PANTONE.pdf` | 123.3 KB | `0fc788afb8b060ac` |
+| `production/pdf-spot/superteamtr_back-print_on-light_SPOT-PANTONE.pdf` | 123.5 KB | `256664f42572766e` |
+| `production/pdf-spot/superteamtr_front-chest_on-dark_SPOT-PANTONE.pdf` | 53.6 KB | `03afaa03b37ec132` |
+| `production/pdf-spot/superteamtr_front-chest_on-light_SPOT-PANTONE.pdf` | 53.6 KB | `a0a9e27c3d395149` |
+| `production/pdf-spot/superteamtr_neck-label_on-dark_SPOT-PANTONE.pdf` | 28.3 KB | `74697a9136bbd3bf` |
+| `production/pdf-spot/superteamtr_sleeve-mark_on-dark_SPOT-PANTONE.pdf` | 13.3 KB | `d2018af0a26a256d` |
+
+## C3c · Spot-colour (Pantone) editable EPS — Separation colour space + DSC ink names
+
+*8 files · 1.0 MB*
+
+| file | size | sha256 |
+|---|---|---|
+| `production/eps-spot/superteamtr_back-print_on-dark_1COLOR_SPOT-PANTONE.eps` | 190.4 KB | `cb40179a35ea0d6b` |
+| `production/eps-spot/superteamtr_back-print_on-dark_2COLOR_SPOT-PANTONE.eps` | 190.5 KB | `a8f1fd8669b4ccb8` |
+| `production/eps-spot/superteamtr_back-print_on-dark_SPOT-PANTONE.eps` | 196.4 KB | `60a7d4385113e078` |
+| `production/eps-spot/superteamtr_back-print_on-light_SPOT-PANTONE.eps` | 197.7 KB | `2731673eb2d308ab` |
+| `production/eps-spot/superteamtr_front-chest_on-dark_SPOT-PANTONE.eps` | 98.3 KB | `6de1c50844edf11c` |
+| `production/eps-spot/superteamtr_front-chest_on-light_SPOT-PANTONE.eps` | 99.0 KB | `801de445b699b9fb` |
+| `production/eps-spot/superteamtr_neck-label_on-dark_SPOT-PANTONE.eps` | 35.7 KB | `f464f56d1155d118` |
+| `production/eps-spot/superteamtr_sleeve-mark_on-dark_SPOT-PANTONE.eps` | 18.5 KB | `b5186fc7364347d8` |
+
+## C4 · Screen-print separations / films
+
+*11 files · 573.4 KB*
+
+| file | size | sha256 |
+|---|---|---|
+| `production/separations/superteamtr_back-print_1COLOR_white.pdf` | 121.3 KB | `0937b7baf9aa3bbc` |
+| `production/separations/superteamtr_back-print_2COLOR_2INK-FILM-1_base-white.pdf` | 116.6 KB | `0f99575a347762bd` |
+| `production/separations/superteamtr_back-print_2COLOR_2INK-FILM-2_solana-green.pdf` | 5.4 KB | `ffac45e85c7e731c` |
 | `production/separations/superteamtr_back-print_on-dark_FILM-1_UNDERBASE_white-union.eps` | 155.0 KB | `97d10f5c3815eb59` |
-| `production/separations/superteamtr_back-print_on-dark_FILM-1_UNDERBASE_white-union.pdf` | 126.1 KB | `b245886f6d0759ff` |
+| `production/separations/superteamtr_back-print_on-dark_FILM-1_UNDERBASE_white-union.pdf` | 126.1 KB | `388b84c457d6c0e5` |
 | `production/separations/superteamtr_back-print_on-dark_FILM-2_TR-RED.eps` | 2.7 KB | `9e985ce5c99d9a46` |
-| `production/separations/superteamtr_back-print_on-dark_FILM-2_TR-RED.pdf` | 2.4 KB | `f68d31b44af589f0` |
+| `production/separations/superteamtr_back-print_on-dark_FILM-2_TR-RED.pdf` | 2.4 KB | `98ecd6b6e081f082` |
 | `production/separations/superteamtr_back-print_on-dark_FILM-3_SOLANA-PURPLE.eps` | 11.7 KB | `cdf28bfe126caf6b` |
-| `production/separations/superteamtr_back-print_on-dark_FILM-3_SOLANA-PURPLE.pdf` | 10.2 KB | `5d249f2c18ceb2d4` |
+| `production/separations/superteamtr_back-print_on-dark_FILM-3_SOLANA-PURPLE.pdf` | 10.2 KB | `44a2e24235b1c3f7` |
 | `production/separations/superteamtr_back-print_on-dark_FILM-4_SOLANA-TEAL.eps` | 11.7 KB | `b38a9ef59170027e` |
-| `production/separations/superteamtr_back-print_on-dark_FILM-4_SOLANA-TEAL.pdf` | 10.2 KB | `714efd557c4c1c39` |
+| `production/separations/superteamtr_back-print_on-dark_FILM-4_SOLANA-TEAL.pdf` | 10.2 KB | `14b6a39acea29da0` |
 
 ## C5 · Transparent PNG masters (≥300 dpi at print size)
 
@@ -137,13 +167,17 @@ Regenerate after any edit with `python3 tools/build_docs.py`.
 | `production/tiff-300dpi/superteamtr_back-print_on-light_PRINTBUILD_300dpi_CMYK.tiff` | 1.3 MB | `41003fcae2b28750` |
 | `production/tiff-300dpi/superteamtr_front-chest_on-dark_PRINTBUILD_300dpi_CMYK.tiff` | 42.8 KB | `65fa8acc16a43ebf` |
 
-## C7 · Layered PSD
+## C7 · Layered PSD set (layers named after the spot inks)
 
-*1 files · 7.1 MB*
+*5 files · 29.1 MB*
 
 | file | size | sha256 |
 |---|---|---|
-| `production/psd/superteamtr_back-print_on-dark_layered.psd` | 7.1 MB | `12fce67f0a6330b8` |
+| `production/psd/superteamtr_all-panels_1to1_layered.psd` | 6.5 MB | `8d0bdd901265c9e6` |
+| `production/psd/superteamtr_back-print_on-dark_FULLCOLOR_layered.psd` | 7.3 MB | `7102eedd2f106fab` |
+| `production/psd/superteamtr_back-print_on-dark_layered.psd` | 7.3 MB | `985d57eb8ecb43f2` |
+| `production/psd/superteamtr_back-print_on-light_layered.psd` | 7.5 MB | `dc12955e427442bb` |
+| `production/psd/superteamtr_front-chest_on-dark_layered.psd` | 617.8 KB | `ab40ed57f4ec7474` |
 
 ## B · Mockups & presentations
 
@@ -195,24 +229,24 @@ Regenerate after any edit with `python3 tools/build_docs.py`.
 
 ## Toolkit (regenerates everything)
 
-*10 files · 144.5 KB*
+*10 files · 158.6 KB*
 
 | file | size | sha256 |
 |---|---|---|
 | `tools/build_artwork.py` | 28.4 KB | `e19d307b9ab0b226` |
-| `tools/build_docs.py` | 20.2 KB | `9a9be9fa8ce97eee` |
+| `tools/build_docs.py` | 22.4 KB | `96ac9ecad9f4f490` |
 | `tools/build_mockups.py` | 21.7 KB | `44bdbc1cf7b7bcff` |
 | `tools/build_presentation.py` | 9.9 KB | `04c0b2b4b9323b97` |
-| `tools/build_production.py` | 13.0 KB | `c0f6b924511511d3` |
+| `tools/build_production.py` | 19.5 KB | `6b7d170c03d49796` |
 | `tools/requirements.txt` | 181 B | `4c1bb594f4c0c4c9` |
-| `tools/lib/inks.py` | 4.3 KB | `ce71fb8671665434` |
+| `tools/lib/inks.py` | 4.8 KB | `ec2fcb4a2d193e60` |
 | `tools/lib/pathparse.py` | 9.2 KB | `3ff3f2d77075dcca` |
 | `tools/lib/svgutil.py` | 22.8 KB | `e7be4b80b382250d` |
-| `tools/lib/vector_export.py` | 14.8 KB | `b1e3856ad8742c15` |
+| `tools/lib/vector_export.py` | 19.8 KB | `ed903d5496af3ddd` |
 
 ## Documentation
 
-*16 files · 661.7 KB*
+*16 files · 665.6 KB*
 
 | file | size | sha256 |
 |---|---|---|
@@ -227,10 +261,10 @@ Regenerate after any edit with `python3 tools/build_docs.py`.
 | `docs/05-comparison-and-recommendation.md` | 3.9 KB | `–` |
 | `docs/06-print-production-spec.md` | 9.4 KB | `–` |
 | `docs/07-design-rationale.md` | 6.3 KB | `–` |
-| `docs/08-quality-control.md` | 5.0 KB | `–` |
-| `docs/09-deliverables-manifest.md` | 13.3 KB | `–` |
+| `docs/08-quality-control.md` | 5.8 KB | `–` |
+| `docs/09-deliverables-manifest.md` | 15.7 KB | `–` |
 | `docs/10-assets-and-licensing.md` | 4.3 KB | `–` |
-| `docs/project-state.json` | 7.2 KB | `db74e85867484bf3` |
-| `production/colour-palette.json` | 2.9 KB | `–` |
+| `docs/project-state.json` | 7.5 KB | `06333c9e3151924d` |
+| `production/colour-palette.json` | 3.3 KB | `–` |
 
 _Fonts are shipped under the SIL Open Font License; see `docs/10-assets-and-licensing.md`._

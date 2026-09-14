@@ -17,7 +17,7 @@ import math
 import re
 from dataclasses import dataclass
 
-from .inks import cmyk_of, hex_to_rgb, normalize_colour
+from .inks import cmyk_of, hex_to_rgb, normalize_colour, spot_name
 
 # --------------------------------------------------------------------------- #
 #  path parsing (shared implementation)
@@ -204,23 +204,61 @@ def _clip_ops(subpaths) -> str:
     return _pdf_path_ops(subpaths) + "\nW n"
 
 
+def _pdf_name(name: str) -> str:
+    """Escape a string into a legal PDF name object (spaces -> #20)."""
+    out = []
+    for ch in name:
+        out.append(ch if (ch.isalnum() or ch in "-_.") else "#%02X" % ord(ch))
+    return "".join(out)
+
+
+class _SpotRegistry:
+    """Collects the spot (Pantone) inks used in a page and the alternating
+    DeviceCMYK alternate that the tint transform maps to."""
+
+    def __init__(self, enabled: bool):
+        self.enabled = enabled
+        self.inks: dict[str, tuple[str, str, tuple]] = {}   # hex -> (res, name, cmyk)
+
+    def of(self, colour: str) -> str:
+        h = normalize_colour(colour).strip().lower()
+        if h not in self.inks:
+            self.inks[h] = (f"CS{len(self.inks)}", spot_name(h), cmyk_of(h))
+        return self.inks[h][0]
+
+    def resname(self, colour: str) -> str | None:
+        h = normalize_colour(colour).strip().lower()
+        e = self.inks.get(h)
+        return e[0] if e else None
+
+
 def svg_to_pdf(svg_text: str, out_path: str, *, bands: int = 10,
                gradient_flat_map: dict | None = None, separate_fill: str | None = None,
                force_fill: str | None = None, page_bg: str | None = None,
-               film: bool = False, title: str = "") -> None:
-    """Convert an artwork SVG to a vector CMYK PDF.
+               film: bool = False, spot: bool = False, title: str = "") -> None:
+    """Convert an artwork SVG to a vector PDF.
 
-    separate_fill: only render items whose (flat-mapped) colour equals this hex.
-                   Used to emit one film per print ink.
+    spot=True  -> every ink is written as a real PDF /Separation colour space
+                  named after its Pantone reference (with a DeviceCMYK tint
+                  transform), so the file carries true spot plates instead of
+                  process builds.
+    separate_fill / film -> single-plate film positives (black on white).
     """
     doc = read_svg(svg_text)
     H = doc.height
-    content = []
-    # global transform: mm -> pt and SVG y-down -> PDF y-up, in one matrix
+    content: list[str] = []
+    reg = _SpotRegistry(spot)
     content.append(f"q {MM2PT:.5f} 0 0 {-MM2PT:.5f} 0 {H * MM2PT:.4f} cm")
+
+    def paint(color_hex: str) -> None:
+        if spot:
+            content.append(f"/{reg.of(color_hex)} cs 1 scn")
+        else:
+            c, m, y, k = cmyk_of(color_hex)
+            content.append(f"{c:.3f} {m:.3f} {y:.3f} {k:.3f} k")
+
     if page_bg:
-        c, m, y, k = cmyk_of(page_bg)
-        content.append(f"{c:.3f} {m:.3f} {y:.3f} {k:.3f} k")
+        paint(page_bg)
         content.append(f"0 0 {doc.width:.4f} {H:.4f} re f")
 
     def emit(color_hex: str, subpaths, opacity=1.0):
@@ -230,17 +268,10 @@ def svg_to_pdf(svg_text: str, out_path: str, *, bands: int = 10,
             color_hex = force_fill or "#000000"   # film positive: solid black
         elif force_fill:
             color_hex = force_fill
-        c, m, y, k = cmyk_of(color_hex)
-        if opacity < 0.999:
-            # emulate with a tint towards white ink-free paper is not possible in
-            # CMYK maths; keep the ink build and record opacity for documentation
-            pass
-        content.append(f"{c:.3f} {m:.3f} {y:.3f} {k:.3f} k")
+        paint(color_hex)
         content.append(_pdf_path_ops(subpaths))
         content.append("f*")
 
-    # background (garment) is deliberately NOT printed: artwork files are printed
-    # as ink-on-garment; the mockups handle garment colour.
     for it in doc.items:
         if it.gradient and bands >= 1:
             grad = it.gradient
@@ -252,32 +283,72 @@ def svg_to_pdf(svg_text: str, out_path: str, *, bands: int = 10,
             if separate_fill and separate_fill.lower() not in plate_colours:
                 continue          # gradient mark belongs to another plate
             b = bounds_of(it.subpaths)
+            if spot:
+                distinct: list[str] = []
+                for _o, cc in grad["stops"]:
+                    if not distinct or distinct[-1].lower() != cc.lower():
+                        distinct.append(cc)
+                nb = max(1, len(distinct))
+                if film or separate_fill:
+                    distinct = [force_fill or "#000000"]
+                    nb = 1
+                for i, (_t, quad) in enumerate(band_quads(grad, b, nb)):
+                    col = distinct[min(i, nb - 1)]
+                    content.append("q")
+                    content.append(_clip_ops(it.subpaths))
+                    paint(col)
+                    content.append(_pdf_path_ops(quad))
+                    content.append("f")
+                    content.append("Q")
+                continue
             for t, quad in band_quads(grad, b, bands):
                 col = "#000000" if (film or separate_fill) else gradient_color(grad, t)
-                c, m, y, k = cmyk_of(col)
                 content.append("q")
                 content.append(_clip_ops(it.subpaths))
-                content.append(f"{c:.3f} {m:.3f} {y:.3f} {k:.3f} k")
+                paint(col)
                 content.append(_pdf_path_ops(quad))
                 content.append("f")
                 content.append("Q")
         else:
             emit(it.fill, it.subpaths, it.opacity)
+
     content.append("Q")
     stream = "\n".join(content).encode("latin-1")
 
     W_pt, H_pt = doc.width * MM2PT, doc.height * MM2PT
-    objs = []
+    objs: list[bytes] = []
 
     def obj(body: bytes) -> int:
         objs.append(body)
         return len(objs)
 
-    info = obj(f"<< /Title ({title or 'SuperteamTR artwork'}) /Producer (SuperteamTR design toolkit) "
-               f"/Creator (tools/lib/vector_export.py) >>".encode("latin-1"))
-    contents = obj(b"<< /Length " + str(len(stream)).encode() + b" >>\nstream\n" + stream + b"\nendstream")
+    info = obj(f"<< /Title ({title or 'SuperteamTR artwork'}) "
+               f"/Producer (SuperteamTR design toolkit) "
+               f"/Creator (tools/lib/vector_export.py) "
+               f"/Subject ({'spot-colour separations' if spot else 'process CMYK artwork'}) "
+               f">>".encode("latin-1"))
+
+    fn_ref: dict[str, int] = {}
+    for hexc, (res, _name, cmyk) in reg.inks.items():
+        c, m, y, k = cmyk
+        fn_ref[res] = obj(
+            (f"<< /FunctionType 2 /Domain [0 1] /Range [0 1 0 1 0 1 0 1] "
+             f"/C0 [0 0 0 0] /C1 [{c:.3f} {m:.3f} {y:.3f} {k:.3f}] /N 1 >>")
+            .encode("latin-1"))
+
+    contents = obj(b"<< /Length " + str(len(stream)).encode() + b" >>\nstream\n"
+                   + stream + b"\nendstream")
+
+    if reg.inks:
+        cs = " ".join(
+            f"/{res} [/Separation /{_pdf_name(name)} /DeviceCMYK {fn_ref[res]} 0 R]"
+            for res, name, _cmyk in reg.inks.values())
+        resources = f"<< /ColorSpace << {cs} >> >>"
+    else:
+        resources = "<< >>"
+
     page = obj((f"<< /Type /Page /Parent 4 0 R /MediaBox [0 0 {W_pt:.4f} {H_pt:.4f}] "
-                f"/Contents {contents} 0 R /Resources << >> >>").encode("latin-1"))
+                f"/Contents {contents} 0 R /Resources {resources} >>").encode("latin-1"))
     pages = obj(b"<< /Type /Pages /Kids [" + f"{page} 0 R".encode() + b"] /Count 1 >>")
     catalog = obj(f"<< /Type /Catalog /Pages {pages} 0 R >>".encode("latin-1"))
 
@@ -298,7 +369,7 @@ def svg_to_pdf(svg_text: str, out_path: str, *, bands: int = 10,
 
 
 # --------------------------------------------------------------------------- #
-#  EPS writer (CMYK, vector)
+#  EPS writer (CMYK or spot, vector)
 # --------------------------------------------------------------------------- #
 
 
@@ -319,17 +390,41 @@ def _ps_path_ops(subpaths) -> str:
     return "\n".join(out)
 
 
+def _ps_separation(name: str, cmyk: tuple) -> str:
+    """PostScript Level 3 Separation colour space with a linear CMYK tint
+    transform (tint on the stack -> C M Y K), so the ink stays a spot plate."""
+    c, m, y, k = cmyk
+    return (f"[/Separation ({name}) /DeviceCMYK "
+            f"{{ dup {c:.4f} mul exch dup {m:.4f} mul exch dup {y:.4f} mul exch "
+            f"{k:.4f} mul }}] setcolorspace")
+
+
 def svg_to_eps(svg_text: str, out_path: str, *, bands: int = 10,
                gradient_flat_map: dict | None = None, separate_fill: str | None = None,
                force_fill: str | None = None, page_bg: str | None = None,
-               film: bool = False, title: str = "") -> None:
+               film: bool = False, spot: bool = False, title: str = "") -> None:
     doc = read_svg(svg_text)
     W, H = doc.width * MM2PT, doc.height * MM2PT
+    reg = _SpotRegistry(spot)
+
+    def paint(color_hex: str) -> None:
+        if spot:
+            code, name, cmyk = (reg.resname(color_hex) or reg.of(color_hex),
+                                spot_name(color_hex), cmyk_of(color_hex))
+            lines.append(f"% spot ink: {name}")
+            lines.append(_ps_separation(name, cmyk))
+            lines.append("1 setcolor")
+        else:
+            c, m, y, k = cmyk_of(color_hex)
+            lines.append(f"{c:.3f} {m:.3f} {y:.3f} {k:.3f} setcmykcolor")
+
     if page_bg:
-        c, m, y, k = cmyk_of(page_bg)
-        bg_line = f"{c:.3f} {m:.3f} {y:.3f} {k:.3f} setcmykcolor 0 0 {W:.4f} {H:.4f} rectfill"
+        bg_c, bg_m, bg_y, bg_k = cmyk_of(page_bg)
+        bg_line = (f"{bg_c:.3f} {bg_m:.3f} {bg_y:.3f} {bg_k:.3f} setcmykcolor "
+                   f"0 0 {W:.4f} {H:.4f} rectfill")
     else:
         bg_line = "% no page background (ink artwork only)"
+
     lines = [
         "%!PS-Adobe-3.0 EPSF-3.0",
         f"%%BoundingBox: 0 0 {math.ceil(W)} {math.ceil(H)}",
@@ -337,7 +432,21 @@ def svg_to_eps(svg_text: str, out_path: str, *, bands: int = 10,
         f"%%Title: {title or 'SuperteamTR artwork'}",
         "%%Creator: SuperteamTR design toolkit (tools/lib/vector_export.py)",
         "%%LanguageLevel: 3",
-        "%%DocumentProcessColors: Cyan Magenta Yellow Black",
+    ]
+    if spot:
+        # DSC spot-colour declarations (used by Illustrator / InDesign on import)
+        names = []
+        for hexc in dict.fromkeys(_colours_in(doc)):
+            names.append(spot_name(hexc))
+        lines.append("%%DocumentProcessColors: Cyan Magenta Yellow Black")
+        lines.append("%%DocumentCustomColors: " + " ".join(f"({n})" for n in names))
+        for hexc in dict.fromkeys(_colours_in(doc)):
+            c, m, y, k = cmyk_of(hexc)
+            lines.append(f"%%CMYKCustomColor: {c:.3f} {m:.3f} {y:.3f} {k:.3f} "
+                         f"({spot_name(hexc)})")
+    else:
+        lines.append("%%DocumentProcessColors: Cyan Magenta Yellow Black")
+    lines += [
         "%%EndComments",
         "%%BeginProlog",
         "/m {moveto} bind def /l {lineto} bind def /c {curveto} bind def",
@@ -356,8 +465,7 @@ def svg_to_eps(svg_text: str, out_path: str, *, bands: int = 10,
             color_hex = force_fill or "#000000"
         elif force_fill:
             color_hex = force_fill
-        c, m, y, k = cmyk_of(color_hex)
-        lines.append(f"{c:.3f} {m:.3f} {y:.3f} {k:.3f} setcmykcolor")
+        paint(color_hex)
         lines.append(_ps_path_ops(subpaths))
         lines.append("eofill")
 
@@ -372,12 +480,30 @@ def svg_to_eps(svg_text: str, out_path: str, *, bands: int = 10,
             if separate_fill and separate_fill.lower() not in plate_colours:
                 continue
             b = bounds_of(it.subpaths)
+            if spot:
+                distinct: list[str] = []
+                for _o, cc in grad["stops"]:
+                    if not distinct or distinct[-1].lower() != cc.lower():
+                        distinct.append(cc)
+                nb = max(1, len(distinct))
+                if film or separate_fill:
+                    distinct, nb = [force_fill or "#000000"], 1
+                for i, (_t, quad) in enumerate(band_quads(grad, b, nb)):
+                    col = distinct[min(i, nb - 1)]
+                    lines.append("gsave")
+                    lines.append(_ps_path_ops(it.subpaths))
+                    lines.append("eoclip")
+                    paint(col)
+                    lines.append(_ps_path_ops(quad))
+                    lines.append("eofill")
+                    lines.append("grestore")
+                continue
             for t, quad in band_quads(grad, b, bands):
                 col = "#000000" if (film or separate_fill) else gradient_color(grad, t)
-                c, m, y, k = cmyk_of(col)
                 lines.append("gsave")
                 lines.append(_ps_path_ops(it.subpaths))
                 lines.append("eoclip")
+                c, m, y, k = cmyk_of(col)
                 lines.append(f"{c:.3f} {m:.3f} {y:.3f} {k:.3f} setcmykcolor")
                 lines.append(_ps_path_ops(quad))
                 lines.append("eofill")
@@ -388,3 +514,16 @@ def svg_to_eps(svg_text: str, out_path: str, *, bands: int = 10,
     lines += ["grestore", "showpage", "%%EOF"]
     with open(out_path, "w", encoding="latin-1") as fh:
         fh.write("\n".join(lines) + "\n")
+
+
+def _colours_in(doc) -> list[str]:
+    """Ink colours used by a document, in first-use order."""
+    out: list[str] = []
+    for it in doc.items:
+        cols = [it.fill]
+        if it.gradient:
+            cols += [c for _o, c in it.gradient["stops"]]
+        for c in cols:
+            if c.lower() not in [x.lower() for x in out]:
+                out.append(c)
+    return out

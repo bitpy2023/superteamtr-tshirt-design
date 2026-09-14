@@ -160,6 +160,30 @@ numbers: back print top edge at 95 mm below the collar seam, 320 mm wide.
 * 1-colour SVG (`production/svg/final-*_1COLOR.svg`) is the cut-file source;
   minimum bridge width 1 mm, weed-friendly at 40 mm and larger.
 
+### Spot colour (Pantone) plates — the preferred press setup
+
+For screen printing the artwork is delivered as **real spot-colour files**, not
+CMYK process builds:
+
+| File set | Ink plates (named in the file) |
+|---|---|
+| `production/pdf-spot/superteamtr_back-print_on-dark_SPOT-PANTONE.pdf` | PANTONE White C (underbase) · PANTONE 199 C · PANTONE 2665 C · PANTONE 338 C |
+| `production/eps-spot/…_SPOT-PANTONE.eps` | same, as PostScript Level-3 `[/Separation (PANTONE …) /DeviceCMYK {…}] setcolorspace` with `%%CMYKCustomColor` declarations |
+| `…_2COLOR_SPOT-PANTONE.*` | PANTONE White C + PANTONE 802 C |
+| `…_1COLOR_SPOT-PANTONE.*` | single ink (white on dark / PANTONE Black 6 C on light) |
+
+Each plate is a true **Separation colour space** with a linear DeviceCMYK
+alternate, so Illustrator / InDesign / the RIP list the inks by Pantone name,
+generate one film per ink, and let the printer swap in the physical ink without
+re-separating anything. If you would rather print process CMYK, the parallel
+`pdf-cmyk/` and `eps-cmyk/` sets carry the documented CMYK builds of the same
+artwork.
+
+**Matching rule:** match to the Pantone references above on press — never to the
+on-screen RGB values. Approve a draw-down for `PANTONE 802 C` (neon green) and
+`199 C` (the SuperteamTR red) before the run; those two inks are the ones that
+shift most between ink systems.
+
 ### Colour management
 * The PDFs/EPSs write real CMYK ink values (`c m y k` operators) with the builds
   in §2; the TIFFs are naive soft proofs.
@@ -177,7 +201,8 @@ numbers: back print top edge at 95 mm below the collar seam, 320 mm wide.
 | DTG / DTF shop | `production/png-300dpi/*_PRINTBUILD_300dpi_transparent.png` (or `_FULLCOLOR_dtg` for the gradient) |
 | Design agency / brand | `design/final/*.svg` + `design/final/*.placements.json` |
 | Marketplace print-on-demand | `production/png-300dpi/final-back-print_on-dark_FULLCOLOR_dtg_300dpi_transparent.png` |
-| Embroiderer | `production/pdf-cmyk/superteamtr_front-chest_on-dark_PRINTBUILD.pdf` (vector, scaled to 40–60 mm) |
+| Embroiderer | `production/pdf-spot/superteamtr_front-chest_on-dark_SPOT-PANTONE.pdf` (vector spot art, scaled to 40–60 mm) |
+| Photoshop / retouch / mockup studio | `production/psd/*.psd` (5 layered files, spot-named ink layers) |
 | Web / social | `mockups/*.png`, `design/final/*.svg` |
 
 ---
@@ -192,6 +217,8 @@ numbers: back print top edge at 95 mm below the collar seam, 320 mm wide.
 | PDF films | `production/separations/` | 4-ink, 2-ink, 1-ink + underbase union plate |
 | PNG 300 dpi | `production/png-300dpi/` | transparent, exact print size |
 | TIFF CMYK | `production/tiff-300dpi/` | soft proofs (LZW) |
-| PSD layered | `production/psd/` | garment guide + one layer per ink + hidden master |
+| PDF (spot / Pantone) | `production/pdf-spot/` | true `/Separation` plates, one film per ink |
+| EPS (spot / Pantone) | `production/eps-spot/` | Separation colour space + DSC custom-ink names |
+| PSD layered | `production/psd/` | 5 files: back dark, back light, front chest, full-colour back, and an all-panels 1:1 sheet — layers named after the Pantone inks (`01_SPOT_PANTONE_White_C` … `04_SPOT_PANTONE_338_C`) + print guide + hidden master |
 
 Full list with sizes and hashes: `docs/09-deliverables-manifest.md`.

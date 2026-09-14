@@ -1,5 +1,5 @@
 {
-  "_note": "SuperteamTR T-shirt colour system - HEX/RGB/CMYK + nearest Pantone",
+  "_note": "SuperteamTR T-shirt colour system - HEX/RGB/CMYK + Pantone spot names. The *_SPOT-PANTONE.pdf/.eps files carry these inks as real PDF/PS Separation colour spaces.",
   "inks": {
     "WHITE": {
       "hex": "#FFFFFF",
@@ -10,6 +10,7 @@
         0.0
       ],
       "pantone": "White (opaque plastisol / DTG white underbase)",
+      "spot": "PANTONE White C",
       "role": "Primary light ink on dark garments; also the underbase for every colour separation when printing on black.",
       "rgb": [
         255,
@@ -26,6 +27,7 @@
         0.0
       ],
       "pantone": "199 C (nearest)",
+      "spot": "PANTONE 199 C",
       "role": "Turkish / SuperteamTR accent - gates, bridge terminus nodes, index marks. Used sparingly (<= 8% of ink area).",
       "rgb": [
         214,
@@ -42,6 +44,7 @@
         0.0
       ],
       "pantone": "2665 C (nearest)",
+      "spot": "PANTONE 2665 C",
       "role": "Solana logomark gradient start + player-portal halo.",
       "rgb": [
         153,
@@ -58,6 +61,7 @@
         0.0
       ],
       "pantone": "3385 C / 802 C neon (nearest)",
+      "spot": "PANTONE 802 C",
       "role": "Solana logomark gradient end + frame index marks.",
       "rgb": [
         20,
@@ -74,6 +78,7 @@
         0.0
       ],
       "pantone": "338 C (nearest)",
+      "spot": "PANTONE 338 C",
       "role": "Mid step of the purple -> green gradient; second colour of the 2-ink print fallback.",
       "rgb": [
         40,
@@ -90,6 +95,7 @@
         1.0
       ],
       "pantone": "Black 6 C (nearest)",
+      "spot": "PANTONE Black 6 C",
       "role": "Concept 2 line work on bone garments.",
       "rgb": [
         11,
@@ -146,6 +152,12 @@
       ]
     }
   },
+  "spot_ink_order": [
+    "PANTONE White C (underbase)",
+    "PANTONE 199 C",
+    "PANTONE 2665 C",
+    "PANTONE 338 C"
+  ],
   "hero_separations": [
     "WHITE",
     "TR_RED",
